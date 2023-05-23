@@ -7,4 +7,5 @@
 2. `bot` - bot directory
 
 
-Test `ivb` branch
+Test `ivb` branch  
+Test `frq` branch
