@@ -1,0 +1,14 @@
+{
+  "procedures": [
+    "Haircut",
+    "Hair coloring",
+    "Highlights",
+    "Balayage",
+    "Facial",
+    "Manicure",
+    "Pedicure",
+    "Waxing",
+    "Eyebrow shaping",
+    "Makeup application"
+  ]
+}
