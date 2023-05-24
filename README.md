@@ -7,4 +7,9 @@
 2. `bot` - bot directory
 
 
-Test `ivb` branch
+### Заполнение данных
+Для заполнения демонстрационных данных предусмотрено 3 менеджмент команды:
+1. `import_masters`
+2. `import_procedures`
+3. `import_clients`  
+Для запуска команды необходимо написать `./manage.py <command_name>`.
