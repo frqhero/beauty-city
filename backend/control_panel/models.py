@@ -31,6 +31,12 @@ class Client(models.Model):
 
 
 class Appointment(models.Model):
+
+    def get_timeslot_repr(self):
+        for slot in self.TIME_SLOTS:
+            if slot[0] == self.time_slot:
+                yield slot[1]
+
     TIME_SLOTS = [
         ('0', '10-11'),
         ('1', '11-12'),
@@ -49,3 +55,10 @@ class Appointment(models.Model):
     procedure = models.ForeignKey(Procedure, on_delete=models.CASCADE)
     salon = models.ForeignKey(Salon, on_delete=models.CASCADE)
     client = models.ForeignKey(Client, on_delete=models.CASCADE)
+
+    def __str__(self):
+        timeslot_rept = next(self.get_timeslot_repr())
+        return (
+            f'{timeslot_rept} | {self.date} | {self.master} |'
+            f' {self.procedure} | {self.salon} | {self.client}'
+        )

@@ -2,9 +2,26 @@
 
 {% block content %}
   <div class="row justify-content-center">
-      <div class="col-md-8 p-5">
-        <h1>{{ procedure.title }}</h1>
-        <p>Стоимость {{ procedure.price }} руб.</p>
-      </div>
+    <div class="col-md-8 p-5">
+      <h1>{{ procedure.title }}</h1>
+      <p>Стоимость {{ procedure.price }} руб.</p>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-md-8 p-5">
+      <h3>Выбрать день записи:</h3>
+        <h4>Завтра</h4>
+        {% for tomorrow_slot in tomorrow_slots %}
+          <a class="btn btn-light" href="{% url 'control_panel:create_appointment' 'tomorrow' tomorrow_slot.0 %}">{{ tomorrow_slot.1 }}</a>
+        {% endfor %}
+        <h4>Послезавтра</h4>
+        {% for after_tomorrow_slot in after_tomorrow_slots %}
+          <a class="btn btn-light" href="{% url 'control_panel:create_appointment' 'after-tomorrow' after_tomorrow_slot.0 %}">{{ after_tomorrow_slot.1 }}</a>
+        {% endfor %}
+        <h4>Через два дня</h4>
+        {% for in_two_days_slot in in_two_days_slots %}
+          <a class="btn btn-light" href="{% url 'control_panel:create_appointment' 'in-two-days' in_two_days_slot.0 %}">{{ in_two_days_slot.1 }}</a>
+        {% endfor %}
+    </div>
   </div>
 {% endblock content %}
