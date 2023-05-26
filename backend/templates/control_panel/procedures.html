@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="row justify-content-center">
+    <div class="col-md-8 p-5">
+      <div class="btn-group-vertical">
+        {% for procedure in procedures %}
+          <a href="{% url 'control_panel:procedure' procedure.id %}">
+            <button class="btn btn-light">{{ procedure.title }}</button>
+          </a>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+{% endblock content %}

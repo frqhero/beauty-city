@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="row justify-content-center">
+    <div class="col-md-8 p-5">
+      <a href="{% url 'control_panel:procedures' %}">
+        <button class="btn btn-light">Записаться к нам</button>
+      </a>
+    </div>
+</div>
+{% endblock content %}
