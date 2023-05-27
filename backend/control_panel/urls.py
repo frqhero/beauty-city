@@ -13,7 +13,7 @@ app_name = 'control_panel'
 urlpatterns = [
     path('', get_index),
     path('procedures', get_procedures, name='procedures'),
-    path('procedure/<int:id>', get_procedure, name='procedure'),
+    path('procedure/<int:procedure_id>', get_procedure, name='procedure'),
     path(
         'create-appointment/<str:day>/<str:timeslot>/<str:master>/<str:salon>/<int:procedure>',
         create_appointment,
