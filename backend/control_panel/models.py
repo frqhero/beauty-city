@@ -54,11 +54,11 @@ class Appointment(models.Model):
     master = models.ForeignKey(Master, on_delete=models.CASCADE)
     procedure = models.ForeignKey(Procedure, on_delete=models.CASCADE)
     salon = models.ForeignKey(Salon, on_delete=models.CASCADE)
-    client = models.ForeignKey(Client, on_delete=models.CASCADE)
+    phone_number = models.CharField(max_length=12)
 
     def __str__(self):
         timeslot_rept = next(self.get_timeslot_repr())
         return (
             f'{timeslot_rept} | {self.date} | {self.master} |'
-            f' {self.procedure} | {self.salon} | {self.client}'
+            f' {self.procedure} | {self.salon} | {self.phone_number}'
         )
