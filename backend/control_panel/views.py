@@ -94,7 +94,10 @@ def create_appointment(request, day, timeslot, master, salon, procedure):
         if form.is_valid():
             obj = form.save()
             return redirect(
-                reverse('control_panel:success_page', kwargs={'id': obj.id})
+                reverse(
+                    'control_panel:success_page',
+                    kwargs={'appointment_id': obj.id}
+                )
             )
     else:
         form = AppointmentForm()
