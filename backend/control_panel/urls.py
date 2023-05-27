@@ -19,5 +19,5 @@ urlpatterns = [
         create_appointment,
         name='create_appointment',
     ),
-    path('success/<int:id>', get_success_page, name='success_page'),
+    path('success/<int:appointment_id>', get_success_page, name='success_page'),
 ]
