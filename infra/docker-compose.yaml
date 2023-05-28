@@ -1,0 +1,36 @@
+services:
+  db:
+    image: postgres:13.0-alpine
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    env_file:
+      - ./.env
+  adminer:
+    image: adminer
+    restart: always
+    depends_on: 
+      - db
+    ports:
+      - 8080:8080
+  backend:
+    build:
+      context: ../
+      dockerfile: backend/Dockerfile
+    volumes:
+        - ./.env:/app/backend/.env
+        - static_value:/app/backend/static/
+    depends_on:
+        - db
+  nginx:
+    image: nginx:1.19.3
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+      - static_value:/var/html/static/
+    depends_on:
+      - backend
+
+volumes:
+  db_data:
+  static_value:

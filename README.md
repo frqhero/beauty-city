@@ -13,3 +13,11 @@
 2. `import_procedures`
 3. `import_clients`  
 Для запуска команды необходимо написать `./manage.py <command_name>`.
+
+### .env файл
+Некоторые значения используемые в приложении вынесены во внешние переменные. Перед запуском docker compose необходимо подготовить файл .env в директории infra.
+* ALLOWED_HOSTS
+* POSTGRES_PASSWORD
+* POSTGRES_URL_SCHEMA=postgres://USER:PASSWORD@HOST:PORT/NAME [детали](https://pypi.org/project/dj-database-url/)
+* SECRET_KEY
+* DEBUG (true or false)

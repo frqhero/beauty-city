@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 import os
 
 from environs import Env
+import dj_database_url
 
 env = Env()
 env.read_env()
@@ -25,10 +26,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '6e0oduey%$8bc6pe=kgw!%+4=k(svzm*9lmq&l=9nyocb8kgnw'
+SECRET_KEY = env('SECRET_KEY', 'NOT SPECIFIED')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env.bool('DEBUG', True)
 
 ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', [])
 
@@ -79,12 +80,14 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
+sqlite_path = os.path.join(BASE_DIR, 'db.sqlite3')
+sqlite_url_schema = f'sqlite:///{sqlite_path}'
+url_schema = env(
+    'POSTGRES_URL_SCHEMA', 
+    sqlite_url_schema
+)
+
+DATABASES = {'default': dj_database_url.config(default=url_schema)}
 
 
 # Password validation
@@ -124,3 +127,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
