@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="row justify-content-center">
+    <div class="col-md-8 p-5">
+      <div class="btn-group-vertical">
+        <a class="btn btn-light" href="{% url 'control_panel:procedures' %}">Выбрать процедуру</a>
+        <a class="btn btn-light" href="{% url 'control_panel:make_appointment' %}">Выбрать мастера</a>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

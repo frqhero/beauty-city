@@ -11,6 +11,14 @@ def get_index(request):
     return render(request, 'control_panel/index.html')
 
 
+def get_make_appointment(request):
+    return render(request, 'control_panel/make_appointment.html')
+
+
+def get_scenarios(request):
+    return render(request, 'control_panel/choose_scenario.html')
+
+
 def get_procedures(request):
     procedures = Procedure.objects.all()
     context = {'procedures': procedures}
